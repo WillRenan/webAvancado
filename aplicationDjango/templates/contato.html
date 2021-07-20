@@ -1,0 +1,50 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contato</title>
+        {% bootstrap_css %}
+        <style>
+            .container>button{
+                border:none;
+                margin-top:16px;
+                border-radius:4px;
+                background:#98d6c5;
+                transition:0.3s;
+            }
+              .container>button:hover{
+                background:#61D2B4;
+                color:white;
+            }
+              .container>button>a{
+                text-decoration:none;
+                padding:16px;
+
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" >
+            <button type="submit" href="/" ><a href="/"> < </a></button>
+
+            <h1 style="margin-top:50px;">Entre em Contao com a gente!</h1>
+            {% bootstrap_messages %} <!-- Caso a mensagem não seja enviada por algum
+
+            motivo, deixar uma mensagem -->
+            <form action="{% url 'contato' %}" method="post" class="form" autocomplete="off">
+            {% csrf_token %} <!-- Recurso de segurança do Django. Gera um token diferente
+
+            para cada formulário e verifica se ninguém o alterou no meio do caminho -->
+            {% bootstrap_form form %} <!-- O bootstrap será aplicado em nosso form -->
+            {% buttons %} <!-- Cria um botão -->
+            <button type="submit" class="btn btn-primary"> Enviar Mensagem</button>
+            {% endbuttons %}
+            </form>
+        </div>
+    {% bootstrap_javascript jquery='full' %}
+    </body>
+
+</html>
